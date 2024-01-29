@@ -90,10 +90,8 @@ class MainActivity : Activity() {
             } else {
                 requestSMSPermissions()
             }
-        } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
-            if (areAllPermissionsGranted()) {
-                enqueueWorkManagerJob()
-            }
+        } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R && areAllPermissionsGranted()) {
+            enqueueWorkManagerJob()
         }
     }
 
