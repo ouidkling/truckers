@@ -5,6 +5,8 @@ import android.os.Environment
 import com.unilim.iut.truckers.modele.NumeroTelephone
 import java.io.File
 
+private const val DEFAULT_CONFIG_FILE = "defaut.json"
+
 class DefautControleur {
 
     private val controleurJson = ChargeurDeStockageExterne()
@@ -16,7 +18,7 @@ class DefautControleur {
      */
     fun verificationDefaultJson(): Boolean {
         val downloadsPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-        val fichier = File(downloadsPath, "defaut.json")
+        val fichier = File(downloadsPath, DEFAULT_CONFIG_FILE)
 
         return fichier.exists()
     }
@@ -28,7 +30,7 @@ class DefautControleur {
      * @return Cette fonction ne retourne rien.
      */
     fun chargementJson(contexte: Context?): String {
-        return controleurJson.charger(contexte, "defaut.json").toString()
+        return controleurJson.charger(contexte, DEFAULT_CONFIG_FILE).toString()
     }
 
     /**
@@ -38,7 +40,7 @@ class DefautControleur {
      * @return Cette fonction retourne une liste de String mot-clés.
      */
     fun chargementMotsClesDefaut(contexte: Context?): MutableList<String> {
-        val objetJson = controleurJson.charger(contexte, "defaut.json")
+        val objetJson = controleurJson.charger(contexte, DEFAULT_CONFIG_FILE)
         val liste = mutableListOf<String>()
 
         val tableauJSON = objetJson.getJSONArray("mots_cles")
@@ -58,7 +60,7 @@ class DefautControleur {
      * @return Cette fonction retourne une liste de String mot-clés.
      */
     fun chargementListeBlancheDefaut(contexte: Context?, nomTableauJson: String): MutableList<NumeroTelephone> {
-        val objetJson = controleurJson.charger(contexte, "defaut.json")
+        val objetJson = controleurJson.charger(contexte, DEFAULT_CONFIG_FILE)
         val liste = mutableListOf<NumeroTelephone>()
 
         val tableauJson = objetJson.getJSONArray(nomTableauJson)
