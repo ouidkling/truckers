@@ -16,10 +16,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
       - name: 'Qodana Scan'
-        uses: JetBrains/qodana-action@v2023.2
+        uses: JetBrains/qodana-action@v2023.3
         with:
-          args: --linter,jetbrains/qodana-jvm-android:2023.2
+          args: --linter,jetbrains/qodana-jvm-android:2023.3
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
